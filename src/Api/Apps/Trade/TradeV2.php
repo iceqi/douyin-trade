@@ -31,7 +31,7 @@ class TradeV2 extends BaseApis
 
     public function params()
     {
-        return $this->params ?? [];
+        return $this->params ? $this->params : [];
     }
 
 
