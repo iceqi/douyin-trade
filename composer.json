@@ -1,0 +1,18 @@
+{
+    "name": "iceqi/douyin-trade",
+    "description": "抖音交易系统api",
+    "require": {
+        "guzzlehttp/guzzle": "^7.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Iceqi\\DouYin\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "iceqi",
+            "email": "95857548@qq.com"
+        }
+    ]
+}
