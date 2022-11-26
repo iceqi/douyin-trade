@@ -37,3 +37,5 @@ $supplier->setToken($access_token)->sync();
 $result = (new \Iceqi\DouYin\Client())->request($supplier)->result();
 
 ```
+
+可能接口文档整理的不全，后续不断更新
