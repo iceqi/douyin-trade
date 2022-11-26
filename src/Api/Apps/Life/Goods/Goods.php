@@ -6,7 +6,11 @@ use Iceqi\DouYin\Api\Apps\Life\Life;
 
 class Goods extends Life
 {
-
+    /***
+     * 创建或更新商品。
+     * 对于同一服务商，相同的 out_id 会被认为是同一商品，重复创建会被覆盖。
+     * @return $this
+     */
     public function product_save()
     {
         $this->_uri = "/goods/product/save/";
@@ -21,6 +25,12 @@ class Goods extends Life
         return $this;
     }
 
+
+    /***
+     * 获取线上产品
+     * @param $id
+     * @return $this
+     */
     public function product_online_get($id)
     {
         $this->_uri = "/goods/product/online/get/";
@@ -30,6 +40,10 @@ class Goods extends Life
         return $this;
     }
 
+    /***
+     * 查看审核以及草稿产品
+     * @return $this
+     */
     public function product_draft_list()
     {
         $this->_uri = "/goods/product/draft/list/";
@@ -45,6 +59,10 @@ class Goods extends Life
         return $this;
     }
 
+    /***
+     * 上下架商品。
+     * @return $this
+     */
     public function operate()
     {
         $this->_uri = "/goods/product/operate/";
