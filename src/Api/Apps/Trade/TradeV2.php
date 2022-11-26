@@ -3,6 +3,7 @@
 namespace Iceqi\DouYin\Api\Apps\Trade;
 
 use Iceqi\DouYin\Api\BaseApis;
+
 class TradeV2 extends BaseApis
 {
 
@@ -22,6 +23,18 @@ class TradeV2 extends BaseApis
     public function getBaseUrl()
     {
         return $this->base_url;
+    }
+
+    public function debug()
+    {
+        $this->debug = true;
+    }
+
+    public function requestOptions()
+    {
+        return ["debug" => $this->debug, "headers" => [
+            "Byte-Authorization" => $this->authorization(),
+        ], "json" => $this->body(), "query" => $this->params()];
     }
 
     public function body()

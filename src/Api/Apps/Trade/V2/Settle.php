@@ -1,6 +1,6 @@
 <?php
 
-namespace Iceqi\Douyin\Api\Apps\Trade\V2;
+namespace Iceqi\DouYin\Api\Apps\Trade\V2;
 
 use Iceqi\DouYin\Api\Apps\Trade\TradeV2;
 

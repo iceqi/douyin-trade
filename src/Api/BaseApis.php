@@ -12,6 +12,9 @@ class BaseApis
     protected $request_uri;
     protected $appId;
     protected $body;
+    protected $debug = false;
+
+    protected $_headers = [];
 
     public function setAppId($appId)
     {
@@ -19,6 +22,17 @@ class BaseApis
         return $this;
     }
 
+
+    protected function setHeader($key, $value)
+    {
+        $this->_headers[$key] = $value;
+        return $this;
+    }
+
+    protected function setBody($name, $value){
+
+        $this->body[$name] = $value;
+    }
 
     public function __set($name, $value)
     {
@@ -30,6 +44,10 @@ class BaseApis
         return $this;
     }
 
+    protected function setParams($name, $value){
+        $this->params[$name] = $value;
+    }
+
     public function getQuery()
     {
         $this->_requestInfo ["request_uri"] = $this->getUri();
@@ -37,6 +55,9 @@ class BaseApis
         return $this->_requestInfo;
     }
 
+    public function requestOptions()
+    {
 
+    }
 
 }

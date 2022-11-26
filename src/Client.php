@@ -23,9 +23,7 @@ class Client
         $query = $baseApis->getQuery();
         $client = $this->request = new \GuzzleHttp\Client(["base_uri" => $baseApis->getBaseUrl(), "verify" => false]);
         try {
-            $response = $client->request($query["method"], $query["request_uri"], ["debug" => false, "headers" => [
-                "Byte-Authorization" => $baseApis->authorization(),
-            ], "json" => $baseApis->body(), "query" => $baseApis->params()]);
+            $response = $client->request($query["method"], $query["request_uri"], $baseApis->requestOptions());
             if ($response->getStatusCode() == 200) {
                 $this->_result["code"] = 200;
                 $this->_result["status"] = "success";
