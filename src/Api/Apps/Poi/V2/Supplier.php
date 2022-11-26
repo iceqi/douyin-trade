@@ -10,7 +10,7 @@ class Supplier extends Poi
 
     public function match()
     {
-        $this->_uri = sprintf("/v2/supplier/match");
+        $this->_uri = "/v2/supplier/match";
         $this->setParamsToken();
         return $this;
     }
@@ -26,7 +26,7 @@ class Supplier extends Poi
     {
         $this->setHeaderToken();
         $this->setParams("supplier_ext_id", $supplier_ext_id);
-        $this->_uri = sprintf("/supplier/query");
+        $this->_uri = "/supplier/query";
         $this->_method = "GET";
         return $this;
     }
@@ -35,7 +35,7 @@ class Supplier extends Poi
     {
         $this->setHeaderToken();
         $this->setParams("supplier_task_ids", $supplier_task_ids);
-        $this->_uri = sprintf("/v2/supplier/query/task/");
+        $this->_uri = "/v2/supplier/query/task/";
         $this->_method = "GET";
         return $this;
     }
