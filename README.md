@@ -38,13 +38,15 @@ $result = $goods->setToken($access_token)->product_draft_list()->doQuery()->resu
 
 ```phpregexp
 商铺同步 方法
-$supplier = new Iceqi\DouYin\Api\Apps\Poi\V2\Supplier();
-$supplier->contact_phone = "xxx";
-$supplier->contact_tel	 = "xxx";
-$supplier->images	 = ["http://xxx.aaa.com/aaa.jpg"];
-$supplier->merchant_uid = xxx;
-$supplier->setToken($access_token)->sync();
-$result =  $supplier->sync()->result();
+$suppler = (new \Iceqi\DouYin\Api\Apps\Poi\V2\Supplier());
+$suppler->supplier_ext_id = xxx;
+$suppler->status = 1;
+$suppler->name = xxx;
+$suppler->shopid = xxx;
+$suppler->type =  xxx;
+$suppler->poi_id =  xxx;
+$suppler->attributes = (object)[];
+$result = $suppler->setToken($this->DouYinToken())->sync()->doQuery()->result();
 
 ```
 
