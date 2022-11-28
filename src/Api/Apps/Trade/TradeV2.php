@@ -16,11 +16,12 @@ class TradeV2 extends BaseApis
     private $base_path = "/api/apps/trade/v2";
     protected $base_url = "https://developer.toutiao.com";
 
-    public function setup($app_id = false)
+    public function trade($app_id = false)
     {
         $this->appId = $app_id;
         $this->timestamp = time();
         $this->nonce_str = strtoupper($this->nonceStr());
+        return $this;
     }
 
     public function getBaseUrl()
@@ -141,11 +142,12 @@ zQIDAQAB
     {
         if ($this->query_result["code"] == 200 && $this->query_result["status"] == "success") {
             if ($this->query_result["data"]) {
-                $data = json_decode($this->query_result["data"], true)["data"];
-                if ($data["error_code"] > 0) {
-                    throw new BizException($this->title . "错误: " . $data["description"]);
+                $data = json_decode($this->query_result["data"], true);
+
+                if ($data["err_no"] > 0) {
+                    throw new BizException($this->title . "错误: " . $data["err_tips"]);
                 } else {
-                    $this->_result = $data;
+                    $this->_result = $data["data"];
                 }
             }
         }
