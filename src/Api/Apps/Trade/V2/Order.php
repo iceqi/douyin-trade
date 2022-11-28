@@ -8,6 +8,8 @@ class Order extends TradeV2
 {
 
     public function create(){
+
+        $this->title = "创建订单";
         $this->_uri ="/create_order";
         return $this;
     }

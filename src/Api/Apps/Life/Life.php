@@ -13,8 +13,6 @@ class Life extends BaseApis
     protected $base_url = "https://open.douyin.com";
     protected $access_token;
 
-
-
     public function setToken($access_token)
     {
         $this->access_token = $access_token;

@@ -8,6 +8,8 @@ class Delivery extends TradeV2
 {
     public function push()
     {
+        $this->title = "发起核销";
+
         $this->_uri = "/push_delivery";
     }
 }

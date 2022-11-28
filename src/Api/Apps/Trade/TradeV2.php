@@ -136,22 +136,6 @@ zQIDAQAB
         return $result;  //bool
     }
 
-    public function doQuery()
-    {
-        try {
-            $this->client = new Query();
-            $this->client->request($this);
-            $this->query_result = $this->client->result();
-            return $this;
-        } catch (\Exception $exception) {
-            throw new ServiceException($exception->getMessage());
-        }
-    }
-
-    public function client()
-    {
-        return $this->client;
-    }
 
     public function result()
     {
@@ -159,7 +143,7 @@ zQIDAQAB
             if ($this->query_result["data"]) {
                 $data = json_decode($this->query_result["data"], true)["data"];
                 if ($data["error_code"] > 0) {
-                    throw new BizException($data["description"]);
+                    throw new BizException($this->title . "错误: " . $data["description"]);
                 } else {
                     $this->_result = $data;
                 }

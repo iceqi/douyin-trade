@@ -13,6 +13,8 @@ class Goods extends Life
      */
     public function product_save()
     {
+        $this->title = "创建或更新商品";
+
         $this->_uri = "/goods/product/save/";
         $this->setParamsToken();
         return $this;
@@ -20,6 +22,8 @@ class Goods extends Life
 
     public function product_online_list()
     {
+
+        $this->title = "获取线上产品列表";
         $this->_uri = "/goods/product/online/list/";
         $this->_method = "GET";
         $this->setParamsToken();
@@ -34,6 +38,8 @@ class Goods extends Life
      */
     public function product_online_get($id)
     {
+
+        $this->title = "获取线上产品";
         $this->_uri = "/goods/product/online/get/";
         $this->_method = "GET";
         $this->setParams("out_ids", $id);
@@ -47,6 +53,8 @@ class Goods extends Life
      */
     public function product_draft_list()
     {
+
+        $this->title = "查看审核以及草稿产品";
         $this->_uri = "/goods/product/draft/list/";
         $this->_method = "GET";
         $this->setParamsToken();
@@ -55,6 +63,8 @@ class Goods extends Life
 
     public function sku_batch_save()
     {
+
+        $this->title = "批量同步sku 产品";
         $this->_uri = "/goods/sku/batch_save/";
         $this->setParamsToken();
         return $this;
@@ -66,6 +76,8 @@ class Goods extends Life
      */
     public function operate()
     {
+
+        $this->title = "上下架商品";
         $this->_uri = "/goods/product/operate/";
         $this->setParamsToken();
         return $this;
@@ -73,6 +85,8 @@ class Goods extends Life
 
     public function goods_stock_sync()
     {
+
+        $this->title = "同步产品库存";
         $this->_uri = "/goods/stock/sync/";
         $this->setParamsToken();
         return $this;
@@ -80,6 +94,8 @@ class Goods extends Life
 
     public function goods_category_get($category_id = 0)
     {
+
+        $this->title = "根据分类获取goods列表";
         $this->_uri = "/goods/category/get/";
         $this->setParams("category_id", $category_id);
         $this->setParamsToken();
@@ -89,6 +105,8 @@ class Goods extends Life
 
     public function goods_sku_get($product_id, $sku_out_ids = 0)
     {
+
+        $this->title = "根据分类获取sku列表";
         $this->_uri = "/goods/category/get/";
         $this->setParams("sku_out_ids", $sku_out_ids);
         $this->setParams("product_id", $product_id);
@@ -99,6 +117,8 @@ class Goods extends Life
 
     public function getTemplate($category_id, $product_type)
     {
+
+        $this->title = "获取分类模板";
         $this->_uri = "/goods/template/get/";
         $this->setParams("category_id", $category_id);
         $this->setParams("product_type", $product_type);
