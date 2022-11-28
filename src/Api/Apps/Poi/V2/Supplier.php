@@ -10,6 +10,7 @@ class Supplier extends Poi
 
     public function match()
     {
+        $this->title = "商户匹配";
         $this->_uri = "/v2/supplier/match";
         $this->setParamsToken();
         return $this;
@@ -17,6 +18,7 @@ class Supplier extends Poi
 
     public function sync()
     {
+        $this->title = "商户同步";
         $this->setHeaderToken();
         $this->_uri = "/supplier/sync/";
         return $this;
