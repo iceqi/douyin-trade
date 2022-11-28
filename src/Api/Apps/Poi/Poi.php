@@ -40,6 +40,7 @@ class Poi extends BaseApis
         $this->_uri = sprintf("/query/");
         $this->setParams("amap_id", $amap_id);
         $this->_method = "GET";
+        $this->setHeaderToken();
         return $this;
     }
 
