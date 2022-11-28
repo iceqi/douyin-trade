@@ -3,6 +3,9 @@
 namespace Iceqi\DouYin\Api\Apps\Trade;
 
 use Iceqi\DouYin\Api\BaseApis;
+use Iceqi\DouYin\Api\Exceptions\BizException;
+use Iceqi\DouYin\Api\Exceptions\ServiceException;
+use Iceqi\DouYin\Query;
 
 class TradeV2 extends BaseApis
 {
@@ -13,7 +16,7 @@ class TradeV2 extends BaseApis
     private $base_path = "/api/apps/trade/v2";
     protected $base_url = "https://developer.toutiao.com";
 
-    public function __construct($app_id = false)
+    public function setup($app_id = false)
     {
         $this->appId = $app_id;
         $this->timestamp = time();
@@ -131,6 +134,38 @@ zQIDAQAB
         $result = (bool)openssl_verify($data, base64_decode($sign), $res, OPENSSL_ALGO_SHA256);
         openssl_free_key($res);
         return $result;  //bool
+    }
+
+    public function doQuery()
+    {
+        try {
+            $this->client = new Query();
+            $this->client->request($this);
+            $this->query_result = $this->client->result();
+            return $this;
+        } catch (\Exception $exception) {
+            throw new ServiceException($exception->getMessage());
+        }
+    }
+
+    public function client()
+    {
+        return $this->client;
+    }
+
+    public function result()
+    {
+        if ($this->query_result["code"] == 200 && $this->query_result["status"] == "success") {
+            if ($this->query_result["data"]) {
+                $data = json_decode($this->query_result["data"], true)["data"];
+                if ($data["error_code"] > 0) {
+                    throw new BizException($data["description"]);
+                } else {
+                    $this->_result = $data;
+                }
+            }
+        }
+        return $this->_result;
     }
 
 }

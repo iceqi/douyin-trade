@@ -14,6 +14,7 @@ class Goods extends Life
     public function product_save()
     {
         $this->_uri = "/goods/product/save/";
+        $this->setParamsToken();
         return $this;
     }
 
@@ -104,5 +105,38 @@ class Goods extends Life
         $this->setParamsToken();
         $this->_method = "GET";
         return $this;
+    }
+
+    public function validTemplate($template, $valid_data, $attr = "product_attrs")
+    {
+        $result = [];
+        $template_data = json_decode($template["data"], true);
+        $data = $template_data["data"][$attr];
+        foreach ($data as $k => $v) {
+
+            if ($v['is_required'] == 1) {
+                if (!$valid_data[$v["key"]]) {
+                    $result["error"][$v["key"]]= $v["name"] . "不能为空";
+                    continue;
+                }
+            }
+            if(isset($valid_data[$v["key"]]) && $valid_data[$v["key"]]){
+                if ($v["is_multi"] == 1){
+                    $result["data"][$v["key"]] = json_encode($valid_data[$v["key"]]);
+                    continue;
+                }
+
+                if( in_array($v["value_type"],["BOOL","STRING","INT64"])){
+                    $result["data"][$v["key"]] = strval($valid_data[$v["key"]]);
+                    continue;
+                }
+
+                if($v["value_type"] == "DOUBLE"){
+                    $result["data"][$v["key"]] = doubleval($valid_data[$v["key"]]);
+                    continue;
+                }
+            }
+        }
+        return $result;
     }
 }

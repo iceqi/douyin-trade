@@ -4,7 +4,7 @@ namespace Iceqi\DouYin;
 
 use Iceqi\DouYin\Api\BaseApis;
 
-class Client
+class Query
 {
     private $_config;
     /**
@@ -31,8 +31,10 @@ class Client
             }
         } catch (RequestException $e) {
             if ($e->hasResponse()) {
+
                 $this->_result["code"] = $e->getResponse()->getStatusCode();
                 $this->_result["status"] = "error";
+                $this->_result["message"] = $e->getMessage();
                 $this->_result["data"] = $e->getResponse()->getBody()->getContents();
             }
         }
@@ -40,7 +42,8 @@ class Client
 
     }
 
-    public function result(){
+    public function result()
+    {
 
         return $this->_result;
     }
