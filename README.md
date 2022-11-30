@@ -27,7 +27,7 @@ try {
 ```
 
 
-#商户（Supplier）
+# 商户（Supplier）
 ```phpregexp
 商铺同步 方法
 $suppler = (new \Iceqi\DouYin\Api\Apps\Poi\V2\Supplier());
@@ -52,7 +52,7 @@ $result = $goods->setToken($access_token)->product_draft_list()->doQuery()->resu
 
 ```
 
-#交易（Trade）
+# 交易（Trade）
 ```phpregexp
 订单退款
 如果是交易（Trade）接口则必须要传appid 无需传递token
