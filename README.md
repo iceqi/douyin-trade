@@ -61,7 +61,7 @@ $refund->trade("appid");
 $refund->out_order_no = $data["out_order_no"];
 $refund->out_refund_no = $data["out_refund_no"];
 $refund->order_entry_schema = ["path" => "pages/paymentSucess/paymentSucess"];
-$refund->notify_url = "https://douyin.keeper.work/notice/index";
+$refund->notify_url = "xxx";
 $refund->item_order_detail = $data["item_order_list"];
 ```
 
