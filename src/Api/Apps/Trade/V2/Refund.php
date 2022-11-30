@@ -17,10 +17,12 @@ class Refund extends  TradeV2
         $this->title = "审核回调";
 
         $this->_uri ="/merchant_audit_callback";
+        return $this;
     }
 
     public function query(){
         $this->title = "查询退款";
         $this->_uri ="/query_refund";
+        return $this;
     }
 }

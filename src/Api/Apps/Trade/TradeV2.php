@@ -147,7 +147,12 @@ zQIDAQAB
                 if ($data["err_no"] > 0) {
                     throw new BizException($this->title . "错误: " . $data["err_tips"]);
                 } else {
-                    $this->_result = $data["data"];
+                    if(isset($data["data"])){
+                        $this->_result = $data["data"];
+                    }
+                    else{
+                        $this->_result = $data["err_tips"];
+                    }
                 }
             }
         }

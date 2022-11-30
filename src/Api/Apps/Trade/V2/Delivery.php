@@ -11,5 +11,6 @@ class Delivery extends TradeV2
         $this->title = "发起核销";
 
         $this->_uri = "/push_delivery";
+        return $this;
     }
 }
