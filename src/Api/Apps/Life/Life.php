@@ -20,6 +20,7 @@ class Life extends BaseApis
     }
     public function debug(){
         $this->debug = true;
+        return $this;
     }
 
     public function requestOptions()

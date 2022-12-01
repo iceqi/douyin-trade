@@ -130,10 +130,8 @@ class Goods extends Life
     public function validTemplate($template, $valid_data, $attr = "product_attrs")
     {
         $result = [];
-        $template_data = json_decode($template["data"], true);
-        $data = $template_data["data"][$attr];
+        $data = $template[$attr];
         foreach ($data as $k => $v) {
-
             if ($v['is_required'] == 1) {
                 if (!$valid_data[$v["key"]]) {
                     $result["error"][$v["key"]]= $v["name"] . "不能为空";
@@ -145,12 +143,7 @@ class Goods extends Life
                     $result["data"][$v["key"]] = json_encode($valid_data[$v["key"]]);
                     continue;
                 }
-
-                if( in_array($v["value_type"],["BOOL","STRING","INT64"])){
-                    $result["data"][$v["key"]] = strval($valid_data[$v["key"]]);
-                    continue;
-                }
-
+                $result["data"][$v["key"]] = strval($valid_data[$v["key"]]);
                 if($v["value_type"] == "DOUBLE"){
                     $result["data"][$v["key"]] = doubleval($valid_data[$v["key"]]);
                     continue;
