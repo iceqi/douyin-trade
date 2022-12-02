@@ -18,7 +18,9 @@ class Life extends BaseApis
         $this->access_token = $access_token;
         return $this;
     }
-    public function debug(){
+
+    public function debug()
+    {
         $this->debug = true;
         return $this;
     }
@@ -49,12 +51,14 @@ class Life extends BaseApis
         return $this->base_url;
     }
 
-    protected function setParamsToken(){
+    protected function setParamsToken()
+    {
         $this->setParams("access_token", $this->access_token);
         return $this;
     }
 
-    protected function setHeaderToken(){
+    protected function setHeaderToken()
+    {
         $this->setHeader("access_token", $this->access_token);
         return $this;
     }
@@ -81,11 +85,21 @@ class Life extends BaseApis
     {
         if ($this->query_result["code"] == 200 && $this->query_result["status"] == "success") {
             if ($this->query_result["data"]) {
-                $data = json_decode($this->query_result["data"], true)["data"];
-                if ($data["error_code"] > 0) {
-                    throw new BizException($data["description"]);
+                $data = json_decode($this->query_result["data"], true);
+
+                if ($data["base"]["biz_code"] > 0) {
+                    throw new BizException($data["base"]["biz_msg"]);
+                }
+
+                if ($data["base"]["gateway_code"] > 0) {
+                    throw new ServiceException($data["base"]["gateway_msg"]);
+                }
+
+                if (isset($data["data"]) && $data["data"]) {
+                    $this->_result = $data["data"];
+
                 } else {
-                    $this->_result = $data;
+                    $this->_result = $data["data"];
                 }
             }
         }
