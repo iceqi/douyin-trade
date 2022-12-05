@@ -99,7 +99,7 @@ class Life extends BaseApis
                     $this->_result = $data["data"];
 
                 } else {
-                    $this->_result = $data["data"];
+                    $this->_result = $data["base"];
                 }
             }
         }
