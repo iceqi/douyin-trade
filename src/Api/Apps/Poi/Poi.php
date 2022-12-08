@@ -2,16 +2,16 @@
 
 namespace Iceqi\DouYin\Api\Apps\Poi;
 
+use Iceqi\DouYin\Api\Apps\DouYin;
 use Iceqi\DouYin\Api\BaseApis;
 use Iceqi\DouYin\Api\Exceptions\BizException;
 use Iceqi\DouYin\Api\Exceptions\ServiceException;
 use Iceqi\DouYin\Query;
 
-class Poi extends BaseApis
+class Poi extends DouYin
 {
 
-    private $base_path = "/poi";
-    protected $base_url = "https://open.douyin.com";
+    protected $base_path = "/poi";
 
     protected $access_token;
 
@@ -37,7 +37,8 @@ class Poi extends BaseApis
 
     public function amap($amap_id)
     {
-        $this->_uri = sprintf("/query/");
+        $this->title = "Amap查询";
+        $this->_uri = "/query/";
         $this->setParams("amap_id", $amap_id);
         $this->_method = "GET";
         $this->setHeaderToken();
@@ -50,32 +51,28 @@ class Poi extends BaseApis
         return $this;
     }
 
+    protected function getUri()
+    {
+        return $this->request_uri = $this->base_path . $this->_uri;
+    }
+
+    public function getBaseUrl()
+    {
+        return $this->base_url;
+    }
 
     public function requestOptions()
     {
         return ["debug" => $this->debug, "headers" => $this->_headers, "json" => $this->body(), "query" => $this->params()];
     }
 
-    public function body()
-    {
-        return $this->body;
-    }
 
     public function params()
     {
         return $this->params ? $this->params : [];
     }
 
-    protected function getUri()
-    {
-        return $this->request_uri = $this->base_path . $this->_uri;
-    }
 
-
-    public function getBaseUrl()
-    {
-        return $this->base_url;
-    }
 
 
 }

@@ -6,7 +6,6 @@ class Plan extends Poi
 {
     public function save()
     {
-
         $this->title = "保存cps";
         $this->_uri = "/common/plan/save/";
         $this->setHeader("access-token",$this->access_token);

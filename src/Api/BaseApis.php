@@ -102,4 +102,8 @@ class BaseApis
         }
         return $this->_result;
     }
+
+    protected function getAppId(){
+        return $this->appId;
+    }
 }

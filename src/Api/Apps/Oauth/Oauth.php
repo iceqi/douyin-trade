@@ -2,15 +2,15 @@
 
 namespace Iceqi\DouYin\Api\Apps\Oauth;
 
+use Iceqi\DouYin\Api\Apps\DouYin;
 use Iceqi\DouYin\Api\BaseApis;
 use Iceqi\DouYin\Api\Exceptions\BizException;
 use Iceqi\DouYin\Api\Exceptions\ServiceException;
 use Iceqi\DouYin\Query;
 
-class Oauth extends BaseApis
+class Oauth extends DouYin
 {
     protected $base_path = "/oauth";
-    protected $base_url = "https://open.douyin.com";
 
     public function client_token()
     {

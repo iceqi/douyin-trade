@@ -2,15 +2,15 @@
 
 namespace Iceqi\DouYin\Api\Apps\Life;
 
+use Iceqi\DouYin\Api\Apps\DouYin;
 use Iceqi\DouYin\Api\BaseApis;
 use Iceqi\DouYin\Api\Exceptions\BizException;
 use Iceqi\DouYin\Api\Exceptions\ServiceException;
 use Iceqi\DouYin\Query;
 
-class Life extends BaseApis
+class Life extends DouYin
 {
-    private $base_path = "/life";
-    protected $base_url = "https://open.douyin.com";
+    protected $base_path = "/life";
     protected $access_token;
 
     public function setToken($access_token)
