@@ -105,9 +105,8 @@ class Goods extends Life
 
     public function goods_sku_get($product_id, $sku_out_ids = 0)
     {
-
-        $this->title = "根据分类获取sku列表";
-        $this->_uri = "/goods/category/get/";
+        $this->title = "根据product_id 获取SKU列表";
+        $this->_uri = "/goods/sku/get/";
         $this->setParams("sku_out_ids", $sku_out_ids);
         $this->setParams("product_id", $product_id);
         $this->setParamsToken();
