@@ -32,7 +32,7 @@ class OpenApi extends TouTiao
 
     public function jsCode2session()
     {
-        $this->title = "获取用户信息";
+        $this->title = "获取用户Session";
         $this->_uri = "/jscode2session";
         return $this;
     }
