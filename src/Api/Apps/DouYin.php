@@ -8,6 +8,12 @@ class DouYin extends BaseApis
 {
     protected $base_url = "https://open.douyin.com";
     protected $base_path;
+    protected $jsonData = false;
+
+    public function BodyToJson(){
+        $this->jsonData = true;
+        return $this;
+    }
 
     public function body()
     {

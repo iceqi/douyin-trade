@@ -24,7 +24,7 @@ class Material extends TouTiao
     public function query_shop_material()
     {
         $this->title = "查询商铺资质材料的状态";
-        $this->_uri = "/add_shop_material";
+        $this->_uri = "/query_shop_material";
         $this->getToken();
         return $this;
     }
@@ -41,6 +41,7 @@ class Material extends TouTiao
     {
         $this->title = "上传授权证书";
         $this->setBody("material_type", 8);
+        $this->upload_shop_material();
         return $this;
     }
 

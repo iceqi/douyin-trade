@@ -13,6 +13,7 @@ class Life extends DouYin
     protected $base_path = "/life";
     protected $access_token;
 
+
     public function setToken($access_token)
     {
         $this->access_token = $access_token;
@@ -27,7 +28,7 @@ class Life extends DouYin
 
     public function requestOptions()
     {
-        return ["debug" => $this->debug, "headers" => $this->_headers, "json" => $this->body(), "query" => $this->params()];
+        return ["debug" => $this->debug, "headers" => $this->_headers, "body" =>$this->jsonData ?  json_encode($this->body(),JSON_UNESCAPED_UNICODE) : $this->body(), "query" => $this->params()];
     }
 
     public function body()
@@ -53,6 +54,7 @@ class Life extends DouYin
 
     protected function setParamsToken()
     {
+        $this->setHeader("Content-Type", 'application/json');
         $this->setParams("access_token", $this->access_token);
         return $this;
     }
@@ -61,6 +63,11 @@ class Life extends DouYin
     {
         $this->setHeader("access_token", $this->access_token);
         return $this;
+    }
+
+
+    public function jscode2session(){
+
     }
 
 
@@ -83,10 +90,13 @@ class Life extends DouYin
 
     public function result()
     {
+        if($this->debug){
+            echo  "<pre>";
+            print_r($this->query_result);die;
+        }
         if ($this->query_result["code"] == 200 && $this->query_result["status"] == "success") {
             if ($this->query_result["data"]) {
                 $data = json_decode($this->query_result["data"], true);
-
                 if ($data["base"]["biz_code"] > 0) {
                     throw new BizException($data["base"]["biz_msg"]);
                 }

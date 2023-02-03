@@ -29,6 +29,14 @@ class OpenApi extends TouTiao
         return $this;
     }
 
+
+    public function jsCode2session()
+    {
+        $this->title = "获取用户信息";
+        $this->_uri = "/jscode2session";
+        return $this;
+    }
+
     public function result()
     {
         if ($this->query_result["code"] == 200 && $this->query_result["status"] == "success") {
