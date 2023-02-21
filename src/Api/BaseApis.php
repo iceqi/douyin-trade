@@ -25,6 +25,8 @@ class BaseApis
     protected $_result;
     protected $query_result;
 
+    protected $dataField = "data";
+
     public function setAppId($appId)
     {
         $this->appId = $appId;
@@ -38,7 +40,8 @@ class BaseApis
         return $this;
     }
 
-    protected function setBody($name, $value){
+    protected function setBody($name, $value)
+    {
 
         $this->body[$name] = $value;
     }
@@ -53,7 +56,8 @@ class BaseApis
         return $this;
     }
 
-    protected function setParams($name, $value){
+    protected function setParams($name, $value)
+    {
         $this->params[$name] = $value;
     }
 
@@ -68,7 +72,6 @@ class BaseApis
     {
 
     }
-
 
 
     public function doQuery()
@@ -92,9 +95,9 @@ class BaseApis
     {
         if ($this->query_result["code"] == 200 && $this->query_result["status"] == "success") {
             if ($this->query_result["data"]) {
-                $data = json_decode($this->query_result["data"], true)["data"];
+                $data = json_decode($this->query_result["data"], true)[$this->dataField];
                 if ($data["error_code"] > 0) {
-                    throw new BizException($this->title . "错误: " .$data["description"]);
+                    throw new BizException($this->title . "错误: " . $data["description"]);
                 } else {
                     $this->_result = $data;
                 }
@@ -103,7 +106,15 @@ class BaseApis
         return $this->_result;
     }
 
-    protected function getAppId(){
+    protected function getAppId()
+    {
         return $this->appId;
+    }
+
+
+    protected function dataField($field)
+    {
+        $this->dataField = $field;
+        return $this;
     }
 }
