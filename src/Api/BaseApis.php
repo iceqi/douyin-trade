@@ -112,7 +112,7 @@ class BaseApis
     }
 
 
-    protected function dataField($field)
+    public function dataField($field)
     {
         $this->dataField = $field;
         return $this;
