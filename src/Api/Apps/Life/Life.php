@@ -109,7 +109,7 @@ class Life extends DouYin
                 }
 
                 if (isset($data["data"]) && $data["data"]) {
-                    if($data["data"]["error_code"] >0){
+                    if(isset($data["data"]["error_code"]) && $data["data"]["error_code"] >0){
                         throw new ServiceException($data["data"]["description"]);
                     }
                     if(isset($data["category_tree_infos"]) || isset($data["category_list"]) ){
