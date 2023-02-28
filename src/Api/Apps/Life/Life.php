@@ -77,6 +77,7 @@ class Life extends DouYin
             $this->client = new Query();
             $this->client->request($this);
             $this->query_result = $this->client->result();
+
             return $this;
         } catch (\Exception $exception) {
             throw new ServiceException($exception->getMessage());
@@ -97,17 +98,26 @@ class Life extends DouYin
         if ($this->query_result["code"] == 200 && $this->query_result["status"] == "success") {
             if ($this->query_result["data"]) {
                 $data = json_decode($this->query_result["data"], true);
-                if ($data["base"]["biz_code"] > 0) {
-                    throw new BizException($data["base"]["biz_msg"]);
-                }
+                if(isset($data["base"])){
+                    if (isset($data["base"]["biz_code"]) && $data["base"]["biz_code"] > 0) {
+                        throw new BizException($data["base"]["biz_msg"]);
+                    }
 
-                if ($data["base"]["gateway_code"] > 0) {
-                    throw new ServiceException($data["base"]["gateway_msg"]);
+                    if (isset($data["base"]["gateway_code"]) && $data["base"]["gateway_code"] > 0) {
+                        throw new ServiceException($data["base"]["gateway_msg"]);
+                    }
                 }
 
                 if (isset($data["data"]) && $data["data"]) {
-                    $this->_result = $data["data"];
-
+                    if($data["data"]["error_code"] >0){
+                        throw new ServiceException($data["data"]["description"]);
+                    }
+                    if(isset($data["category_tree_infos"]) || isset($data["category_list"]) ){
+                        $this->_result = isset($data["category_tree_infos"]) ? $data["category_tree_infos"] : $data["category_list"]  ;
+                    }
+                    else{
+                        $this->_result = $data["data"];
+                    }
                 } else {
                     $this->_result = $data["base"];
                 }

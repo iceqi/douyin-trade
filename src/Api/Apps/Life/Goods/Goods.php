@@ -92,12 +92,12 @@ class Goods extends Life
         return $this;
     }
 
-    public function goods_category_get($category_id = 0)
+    public function goods_category_get($category_id = 0 ,$query_category_type= 1)
     {
-
         $this->title = "根据分类获取goods列表";
         $this->_uri = "/goods/category/get/";
         $this->setParams("category_id", $category_id);
+        $this->setParams("query_category_type",$query_category_type);
         $this->setParamsToken();
         $this->_method = "GET";
         return $this;
